@@ -70,6 +70,7 @@ label{display:block;font-size:14px;color:var(--mute);margin:12px 0 5px}
 .tool svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .st{margin-left:auto;font-size:12px;font-weight:650;padding:3px 9px;border-radius:999px;white-space:nowrap}
 .st.live{background:#E3F8EE;color:#0B7A47}.st.needs{background:#FFF4DC;color:#8A5A00}.st.nb{background:#EEF2F9;color:#4A5873}
+#strip .chip{font-size:14px;cursor:pointer}.sheet{position:fixed;inset:0;z-index:50;background:rgba(16,32,63,.35);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center}.sheet>div{background:#fff;width:100%;max-width:640px;max-height:92vh;overflow:auto;border-radius:26px 26px 0 0;padding:18px 18px calc(24px + env(safe-area-inset-bottom));animation:up .25s ease}@keyframes up{from{transform:translateY(40px);opacity:0}}.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.kv div{background:var(--soft);border-radius:14px;padding:10px 12px}.kv b{display:block;font-size:16px}.kv span{font-size:12px;color:var(--mute)}.big{font-size:26px;padding:6px 18px}.q button.a{background:var(--blue);color:#fff;border-color:var(--blue)}.sheet ul{margin:8px 0 0;padding-left:20px}.sheet li{margin:4px 0}.px{transition:color .3s}.px.up{color:#0B7A47}.px.dn{color:#B4232A}
 nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
 nav button{flex:1;border:0;background:none;font:inherit;font-size:12px;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;min-height:56px;border-radius:14px}
 nav button svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -97,9 +98,9 @@ header{position:fixed;left:210px;right:0;top:0}main{padding-top:104px}}
 <nav id="nav"></nav>
 <script>
 const T={
-en:{home:'Home',trade:'Trading',chat:'Chat',tools:'Tools',settings:'Settings',tag:'Calm, careful market intelligence',hello:'Welcome to Ego AIII',sub:'Your calm, careful market assistant.',aiOn:'AI engine live',aiOff:'AI engine not connected',auto:'Automation',on:'On',off:'Off',lastScan:'Last scan',paper:'Paper trading',equity:'Virtual balance',ret:'Return',win:'Win rate',open:'Open paper trades',topShort:'Top SHORT candidates',topLong:'Top LONG candidates',waitN:'coins on WAIT',none:'Nothing right now. WAIT is a valid answer.',sig:'Signal history',entry:'Entry',sl:'Stop-loss',exp:'Expires',dis:'DISAGREEMENT',agree:'Agreement',ph:'Ask Ego AIII anything…',send:'Send',recent:'Recent questions',quick:'Quick starts',q1:'Explain RSI in simple words',q2:'What does DISAGREEMENT mean?',q3:'Explain risk per trade',needChat:'Chat is not connected yet. It needs the ai-chat backend function, which is not deployed.',tl:'AI tools',live:'Live',needs:'Needs backend',nb:'Not built yet',tChat:'AI chat',tSmart:'Smart answers',tImg:'Image generation',tDoc:'Document analysis',tCode:'Code assistant',tTrade:'Trading analysis',url:'Supabase project URL',anon:'Public API key (anon or publishable)',pin:'Dashboard PIN',save:'Save',test:'Test connection',lang:'Language',chatOn:'My ai-chat function is deployed',demo:'DEMO: sample data, not real. Add your connection in Settings.',warn:'Paper results only. Not financial advice.',err:'Could not load data:',ok:'Connected',saved:'Saved'}
+en:{home:'Home',trade:'Trading',chat:'Chat',tools:'Tools',settings:'Settings',tag:'Calm, careful market intelligence',hello:'Welcome to Ego AIII',sub:'Your calm, careful market assistant.',aiOn:'AI engine live',aiOff:'AI engine not connected',auto:'Automation',on:'On',off:'Off',lastScan:'Last scan',paper:'Paper trading',equity:'Virtual balance',ret:'Return',win:'Win rate',open:'Open paper trades',topShort:'Top SHORT candidates',topLong:'Top LONG candidates',waitN:'coins on WAIT',none:'Nothing right now. WAIT is a valid answer.',sig:'Signal history',entry:'Entry',sl:'Stop-loss',exp:'Expires',dis:'DISAGREEMENT',agree:'Agreement',ph:'Ask Ego AIII anything…',send:'Send',recent:'Recent questions',quick:'Quick starts',q1:'Explain RSI in simple words',q2:'What does DISAGREEMENT mean?',q3:'Explain risk per trade',needChat:'Chat is not connected yet. It needs the ai-chat backend function, which is not deployed.',tl:'AI tools',live:'Live',needs:'Needs backend',nb:'Not built yet',tChat:'AI chat',tSmart:'Smart answers',tImg:'Image generation',tDoc:'Document analysis',tCode:'Code assistant',tTrade:'Trading analysis',url:'Supabase project URL',anon:'Public API key (anon or publishable)',pin:'Dashboard PIN',save:'Save',test:'Test connection',lang:'Language',chatOn:'My ai-chat function is deployed',demo:'DEMO: sample data, not real. Add your connection in Settings.',warn:'Paper results only. Not financial advice.',err:'Could not load data:',ok:'Connected',saved:'Saved',markets:'Markets',mSearch:'Search coin, e.g. BTC',mLive:'Live from Binance',mConn:'Connecting to Binance…',mErr:'Binance data not reachable on this network',mNote:'Tap any coin to analyze it. Prices stream straight from Binance public data to your phone. No API key is used. Display only, not advice.'}
 };
-const IC={home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',trade:'<path d="M3 17l5-5 4 4 8-9M15 7h5v5"/>',chat:'<path d="M21 12a8 8 0 0 1-11.600 7.100L4 20l1-4.500A8 8 0 1 1 21 12z"/>',tools:'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>'};
+const IC={markets:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',trade:'<path d="M3 17l5-5 4 4 8-9M15 7h5v5"/>',chat:'<path d="M21 12a8 8 0 0 1-11.600 7.100L4 20l1-4.500A8 8 0 1 1 21 12z"/>',tools:'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>'};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function ls(k,d){try{const v=localStorage.getItem('ego_'+k);return v?JSON.parse(v):d}catch(e){return d}}
@@ -123,7 +124,7 @@ function vHome(){
  const d=S.data,live=!S.demo&&!S.err&&d;
  let h='<section class="hero"><h1>'+t('hello')+'</h1><p>'+t('sub')+'</p><div class="row"><span class="chip"><i class="dot '+(live?'on':'')+'"></i>'+(live?t('aiOn'):t('aiOff'))+'</span>';
  if(d&&d.status)h+='<span class="chip">'+t('auto')+': <b>'+(d.status.automation_enabled?t('on'):t('off'))+'</b></span><span class="chip">'+t('lastScan')+': '+ago(d.status.last_scan)+'</span>';
- h+='</div></section>'+banner();
+ h+='</div></section><div id="strip" class="row" style="margin-top:14px"></div>'+banner();
  if(S.loading&&!d)return h+sk();
  if(!d)return h;
  const p=d.paper||{},sc=d.scan||[];
@@ -153,16 +154,16 @@ function vSet(){
  return '<div class="card"><h2>'+t('settings')+'</h2><label>'+t('url')+'</label><input type="url" id="cu" placeholder="https://xxxx.supabase.co" value="'+esc(c.url||'')+'"><label>'+t('anon')+'</label><input type="password" id="ca" value="'+esc(c.anon||'')+'"><label>'+t('pin')+'</label><input type="password" id="cp" value="'+esc(c.pin||'')+'"><label style="display:flex;gap:10px;align-items:center;color:var(--ink)"><input type="checkbox" id="cc" '+(c.chatOn?'checked':'')+' style="width:22px;height:22px"> '+t('chatOn')+'</label><div class="row"><button class="btn" onclick="saveCfg()">'+t('save')+'</button><button class="btn o" onclick="saveCfg(true)">'+t('test')+'</button></div><p class="warn" id="cs"></p></div>'}
 function render(){
  $('#tag').textContent=t('tag');document.documentElement.lang=S.lang;
- $('#nav').innerHTML=['home','trade','chat','tools','settings'].map(k=>'<button class="'+(S.tab===k?'a':'')+'" onclick="go(\''+k+'\')">'+ico(k)+'<span>'+t(k)+'</span></button>').join('');
- const V={home:vHome,trade:vTrade,chat:vChat,tools:vTools,settings:vSet};
- $('#app').innerHTML=V[S.tab]();
+ $('#nav').innerHTML=['home','markets','trade','chat','tools','settings'].map(k=>'<button class="'+(S.tab===k?'a':'')+'" onclick="go(\''+k+'\')">'+ico(k)+'<span>'+t(k)+'</span></button>').join('');
+ const V={home:vHome,markets:vMarkets,trade:vTrade,chat:vChat,tools:vTools,settings:vSet};
+ $('#app').innerHTML=V[S.tab]();updLive();
  const m=$('#msgs');if(m)m.scrollTop=m.scrollHeight}
 function go(k){S.tab=k;render();window.scrollTo(0,0)}
 async function load(){
  const c=S.cfg;
  if(!c.url||!c.anon||!c.pin){S.data=DEMO;S.demo=true;S.err=null;S.loading=false;render();return}
  S.demo=false;
- try{const r=await fetch(c.url.replace(/\/$/,'')+'/functions/v1/dashboard-data',{method:'POST',headers:{'Content-Type':'application/json',apikey:c.anon,Authorization:'Bearer '+c.anon,'x-dashboard-pin':c.pin},body:JSON.stringify({interval:'15m'})});
+ try{const r=await fetch(base()+'/functions/v1/dashboard-data',{method:'POST',headers:{'Content-Type':'application/json',apikey:c.anon,Authorization:'Bearer '+c.anon,'x-dashboard-pin':c.pin},body:JSON.stringify({interval:'15m'})});
   const j=await r.json();if(!r.ok||!j.ok)throw new Error(j.error||j.message||('HTTP '+r.status));S.data=j;S.err=null}
  catch(e){S.err=String(e.message||e)}
  S.loading=false;render()}
@@ -177,12 +178,70 @@ async function send(){
  S.chat.push({r:'u',m});S.typing=true;render();
  const c=S.cfg;let reply;
  if(c.chatOn&&c.url&&c.anon&&c.pin){
-  try{const r=await fetch(c.url.replace(/\/$/,'')+'/functions/v1/ai-chat',{method:'POST',headers:{'Content-Type':'application/json',apikey:c.anon,Authorization:'Bearer '+c.anon,'x-dashboard-pin':c.pin},body:JSON.stringify({message:m,lang:S.lang})});
+  try{const r=await fetch(base()+'/functions/v1/ai-chat',{method:'POST',headers:{'Content-Type':'application/json',apikey:c.anon,Authorization:'Bearer '+c.anon,'x-dashboard-pin':c.pin},body:JSON.stringify({message:m,lang:S.lang})});
    const j=await r.json();reply=j.reply||j.error||j.message||'No reply'}
   catch(e){reply=t('err')+' '+e.message}
  }else reply=t('needChat');
  S.typing=false;S.chat.push({r:'a',m:reply});sv('chat',S.chat.slice(-40));render()}
-render();load();
+
+const base=()=>{try{return new URL(S.cfg.url).origin}catch(e){return(S.cfg.url||'').replace(/\/$/,'')}};
+const IVS=['5m','15m','30m','1h','4h','1d'];S.an=null;
+function openAn(sym){S.an={sym,iv:(S.an&&S.an.iv)||'15m',loading:false,res:null,err:null};drawAn()}
+function closeAn(){S.an=null;const x=$('#sheet');if(x)x.remove()}
+function setIv(v){S.an.iv=v;S.an.res=null;S.an.err=null;drawAn()}
+function drawAn(){let sh=$('#sheet');if(!sh){sh=document.createElement('div');sh.id='sheet';sh.className='sheet';sh.onclick=e=>{if(e.target===sh)closeAn()};document.body.appendChild(sh)}sh.innerHTML='<div>'+vAn()+'</div>';updLive()}
+async function runAn(){const c=S.cfg,a=S.an;if(!(c.url&&c.anon&&c.pin)){a.err='Connect your Supabase details in Settings first.';drawAn();return}
+ a.loading=true;a.err=null;a.res=null;drawAn();
+ try{const r=await fetch(base()+'/functions/v1/analyze-coin',{method:'POST',headers:{'Content-Type':'application/json',apikey:c.anon,Authorization:'Bearer '+c.anon,'x-dashboard-pin':c.pin},body:JSON.stringify({symbol:a.sym,interval:a.iv})});
+  const j=await r.json();if(!r.ok||!j.ok)throw new Error(j.error||j.message||('HTTP '+r.status));a.res=j}catch(e){a.err=String(e.message||e)}
+ a.loading=false;if(S.an===a)drawAn()}
+function vAn(){const a=S.an;
+ let h='<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 style="margin:0">'+esc(a.sym.replace('USDT',''))+' <small style="font-size:14px;color:var(--mute)">USDT</small> <span id="shp" class="px"></span></h2><button class="btn o" onclick="closeAn()" style="min-height:40px;padding:6px 16px">&#10005;</button></div>';
+ h+='<div class="q">'+IVS.map(v=>'<button class="'+(a.iv===v?'a':'')+'" onclick="setIv(\''+v+'\')">'+v+'</button>').join('')+'</div>';
+ h+='<div class="row"><button class="btn" onclick="runAn()" '+(a.loading?'disabled':'')+'>Analyze now</button></div>';
+ if(a.loading)h+='<div class="b a ty" style="margin-top:14px;display:inline-block"><span></span><span></span><span></span></div><p class="warn">Fetching candles, calculating indicators and asking the AI. This can take up to a minute.</p>';
+ if(a.err)h+='<div class="err">'+esc(a.err)+'</div>';
+ if(a.res)h+=vRes(a.res);
+ return h}
+function vRes(r){const d=r.decision,k=(x,y)=>'<div><span>'+x+'</span><b>'+y+'</b></div>',I=r.indicators||{},E=I.ema||{},A=I.adx||{},M=I.macd_hist;
+ let h='<div class="row" style="align-items:center;margin-top:16px"><span class="pill big '+esc(d)+'">'+esc(d)+'</span>'+(r.disagreement?'<span class="pill tag">DISAGREEMENT</span>':'')+(r.cached?'<span class="chip">recent result</span>':'')+'</div>';
+ h+='<p class="warn">Rule engine: <b>'+esc(r.rule||'–')+'</b> &middot; Gemini: <b>'+esc(r.gemini||'n/a')+'</b> &middot; Agreement '+(r.agreement_score==null?'–':r.agreement_score+'%')+' &middot; '+esc(r.interval)+'</p>';
+ if(r.ai_error)h+='<div class="demo">AI engine unavailable ('+esc(r.ai_error)+'). Only the rule engine was used, so the result is WAIT by design.</div>';
+ if(d==='LONG'||d==='SHORT')h+='<div class="kv">'+k('Entry',fp(r.entry))+k('Stop-loss',fp(r.stop_loss))+k('TP1',fp(r.tp1))+k('TP2',fp(r.tp2))+k('TP3',fp(r.tp3))+k('Risk : Reward','1 : '+(r.risk_reward||'–'))+k('Leverage cap',(r.leverage||'–')+'x')+k('Valid for',ago2(r.expires_at))+'</div><p class="warn">Entry is the price at the last closed candle. If the live price has moved far from it, the setup may no longer be valid.</p>';
+ else h+='<div class="demo" style="background:#EEF2F9;color:#33415C">No trade setup right now. WAIT means the evidence is mixed or the risk:reward is poor. Not entering is a valid decision.</div>';
+ if((r.reasons||[]).length)h+='<h2 style="margin-top:16px">Why</h2><ul>'+r.reasons.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
+ if(r.bullish)h+='<h2 style="margin-top:16px">Bullish case</h2><p style="margin:4px 0">'+esc(r.bullish)+'</p>';
+ if(r.bearish)h+='<h2 style="margin-top:16px">Bearish case</h2><p style="margin:4px 0">'+esc(r.bearish)+'</p>';
+ if(r.safety_note)h+='<p class="warn">Safety check: '+esc(r.safety_note)+'</p>';
+ h+='<h2 style="margin-top:16px">Indicators</h2><div class="kv">'+k('Price now',fp(r.price_now))+k('RSI 14',I.rsi14==null?'–':Number(I.rsi14).toFixed(1))+k('ADX 14',A.adx==null?'–':Number(A.adx).toFixed(1))+k('MACD hist',M==null?'–':fp(M))+k('EMA 20 / 50',fp(E.e20)+' / '+fp(E.e50))+k('EMA 200',fp(E.e200))+k('ATR 14',fp(I.atr14))+k('Support / Resistance',fp(I.support_50)+' / '+fp(I.resistance_50))+'</div>';
+ h+='<p class="warn">Analysis only, not financial advice. Futures with leverage can lose your whole margin. Paper-test before risking money.</p>';
+ return h}
+const L={map:{},st:'connecting',ts:0,poll:null};
+const fm=n=>n>=1e9?(n/1e9).toFixed(2)+'B':n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n.toFixed(0);
+function put(s,p,o,q){if(!/USDT$/.test(s)||!isFinite(p))return;const pv=L.map[s];L.map[s]={p,chg:o?(p-o)/o*100:0,q:q||0,d:pv?(p>pv.p?1:p<pv.p?-1:pv.d):0}}
+function stopPoll(){if(L.poll){clearInterval(L.poll);L.poll=null}}
+function startPoll(){if(L.poll)return;const go=async()=>{try{const r=await fetch('https://fapi.binance.com/fapi/v1/ticker/24hr');const a=await r.json();for(const x of a)put(x.symbol,+x.lastPrice,+x.openPrice,+x.quoteVolume);L.ts=Date.now();L.st='live'}catch(e){L.st='error'}};go();L.poll=setInterval(go,5000)}
+function startLive(){
+ try{
+  const ws=new WebSocket('wss://fstream.binance.com/ws/!miniTicker@arr');
+  const guard=setTimeout(()=>{if(L.st!=='live')startPoll()},7000);
+  ws.onopen=()=>{L.st='live'};
+  ws.onmessage=e=>{try{for(const x of JSON.parse(e.data))put(x.s,+x.c,+x.o,+x.q);L.ts=Date.now();L.st='live';stopPoll()}catch(_){}};
+  ws.onclose=()=>{clearTimeout(guard);if(L.st==='live')L.st='reconnecting';setTimeout(startLive,3000)};
+  ws.onerror=()=>{try{ws.close()}catch(_){}};
+ }catch(e){startPoll()}
+}
+function vMarkets(){return '<div class="card"><h2>'+t('markets')+' <span id="lst" class="chip" style="font-size:13px;padding:4px 10px"></span></h2><input type="text" id="mq" placeholder="'+esc(t('mSearch'))+'" oninput="S.mq=this.value;updLive()" value="'+esc(S.mq||'')+'"><div id="mlist"></div><p class="warn">'+t('mNote')+'</p></div>'}
+const pc=x=>'<small style="color:'+(x.chg>=0?'#0B7A47':'#B4232A')+'">'+(x.chg>=0?'+':'')+x.chg.toFixed(2)+'%</small>';
+function updLive(){
+ const st=$('#lst');if(st)st.innerHTML='<i class="dot '+(L.st==='live'?'on':'')+'"></i>'+(L.st==='live'?t('mLive'):L.st==='error'?t('mErr'):t('mConn'));
+ const sp=$('#strip');if(sp)sp.innerHTML=['BTCUSDT','ETHUSDT','BNBUSDT','SOLUSDT'].map(s=>{const x=L.map[s];return '<span class="chip" onclick="openAn(\''+s+'\')"><b>'+s.replace('USDT','')+'</b> '+(x?'<span class="px '+(x.d>0?'up':x.d<0?'dn':'')+'">'+fp(x.p)+'</span> '+pc(x):'…')+'</span>'}).join('');
+ const shp=$('#shp');if(shp&&S.an){const x=L.map[S.an.sym];shp.innerHTML=x?fp(x.p)+' '+pc(x):''}
+ const ml=$('#mlist');if(ml){const q=(S.mq||'').trim().toUpperCase();const a=Object.entries(L.map).filter(e=>!q||e[0].includes(q)).sort((x,y)=>y[1].q-x[1].q).slice(0,q?60:40);
+  ml.innerHTML=a.length?a.map(e=>{const s=e[0],x=e[1];return '<div class="li" onclick="openAn(\''+s+'\')" style="cursor:pointer"><div><b>'+esc(s.replace('USDT',''))+'</b><small>Vol '+fm(x.q)+'</small></div><div style="text-align:right"><span class="px '+(x.d>0?'up':x.d<0?'dn':'')+'"><b>'+fp(x.p)+'</b></span>'+pc(x)+'</div></div>'}).join(''):'<p class="warn">'+(L.st==='live'?t('none'):t('mConn'))+'</p>'}
+}
+setInterval(updLive,1000);
+render();load();startLive();
 setInterval(()=>{if(!S.demo&&(S.tab==='home'||S.tab==='trade'))load()},60000);
 </script>
 </body>
