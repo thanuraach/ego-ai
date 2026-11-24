@@ -231,14 +231,15 @@ function startPoll(){if(L.poll)return;const go=async()=>{try{const r=await fetch
 function startLive(){
  try{
   const ws=new WebSocket('wss://fstream.binance.com/ws/!miniTicker@arr');
-  const guard=setTimeout(()=>{if(L.st!=='live')startPoll()},7000);
-  ws.onopen=()=>{L.st='live'};
+  const guard=setTimeout(()=>{if(!L.ts)startPoll()},6000);
+  ws.onopen=()=>{};
   ws.onmessage=e=>{try{for(const x of JSON.parse(e.data))put(x.s,+x.c,+x.o,+x.q);L.ts=Date.now();L.st='live';stopPoll()}catch(_){}};
   ws.onclose=()=>{clearTimeout(guard);if(L.st==='live')L.st='reconnecting';setTimeout(startLive,3000)};
   ws.onerror=()=>{try{ws.close()}catch(_){}};
  }catch(e){startPoll()}
 }
-function vMarkets(){return '<div class="card"><h2>'+t('markets')+' <span id="lst" class="chip" style="font-size:13px;padding:4px 10px"></span></h2><input type="text" id="mq" placeholder="'+esc(t('mSearch'))+'" oninput="S.mq=this.value;updLive()" value="'+esc(S.mq||'')+'"><div class="q"><button class="'+(S.mt!=='all'?'a':'')+'" onclick="setMt(\'top\')">Top 28</button><button class="'+(S.mt==='all'?'a':'')+'" onclick="setMt(\'all\')">All coins</button></div><div id="mlist"></div><p class="warn" id="msrc"></p><p class="warn">'+t('mNote')+'</p></div>'}
+setInterval(()=>{if(L.ts&&Date.now()-L.ts>15000){L.st='reconnecting';startPoll()}},5000);
+function vMarkets(){return '<div class="card"><h2>'+t('markets')+' <span id="lst" class="chip" style="font-size:13px;padding:4px 10px"></span></h2><input type="text" id="mq" autocapitalize="characters" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="'+esc(t('mSearch'))+'" oninput="S.mq=this.value;updLive()" value="'+esc(S.mq||'')+'"><div class="q"><button class="'+(S.mt!=='all'?'a':'')+'" onclick="setMt(\'top\')">Top 28</button><button class="'+(S.mt==='all'?'a':'')+'" onclick="setMt(\'all\')">All coins</button></div><div id="mlist"></div><p class="warn" id="msrc"></p><p class="warn">'+t('mNote')+'</p></div>'}
 const pc=x=>'<small style="color:'+(x.chg>=0?'#0B7A47':'#B4232A')+'">'+(x.chg>=0?'+':'')+x.chg.toFixed(2)+'%</small>';
 function updLive(){
  const ck=$('#clk');if(ck)ck.textContent=new Date().toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
